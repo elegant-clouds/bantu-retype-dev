@@ -1,0 +1,23 @@
+input: .
+output: ./docs
+url: https://doc3.elegantclouds.com
+meta:
+  title: " | Bantu Dev"
+
+branding:
+  title: Bantu
+  label: Dev
+links:
+- text: Accueil
+  link: https://doc3.elegantclouds.com
+  icon: home
+- text: Issues
+  link: https://github.com/elegant-clouds/bantu-retype-dev/issues
+  icon: bug
+  target: _blank
+- text: Github
+  link: https://github.com/elegant-clouds/bantu-retype-dev
+  icon: mark-github
+  target: _blank
+footer:
+  copyright: "SOFFA, {{ year }}"
