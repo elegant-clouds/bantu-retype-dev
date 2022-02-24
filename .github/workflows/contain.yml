@@ -1,0 +1,31 @@
+name: contain
+
+on:   
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Push image to GitHub Packages.
+  # See also https://docs.docker.com/docker-hub/builds/
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.REGISTRY }}  -u ${{ github.actor }} --password-stdin
+
+      - name: Build docker image
+        run: docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }} .
+
+      - name: Push docker image
+        run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
