@@ -1,7 +1,7 @@
 FROM node:current AS build
 WORKDIR /app
-COPY bantu-developers /app/
-ADD retype.yml /app/
+COPY bantu-developers .
+COPY retype.yml .
 RUN npm install npm --global
 RUN npm install retypeapp --global
 RUN retype build
